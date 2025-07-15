@@ -7,6 +7,7 @@ import (
 func main() {
 	viper := config.LoadConfig()
 	db:=config.DbConnection(viper)
+	config.Migrate(db)
 	app:=config.NewServer()
     
     

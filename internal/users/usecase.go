@@ -6,5 +6,7 @@ import (
 
 type UsercaseLayer interface {
 	Signup(*dtos.UserReq) error
-	GetUsers() ([]dtos.UserResponse, error)
+	GetUsers() (*[]dtos.UserResponse, error)
+	DeleteUser(int)error
+	UpdateUser(int,*dtos.UserResponse)error
 }

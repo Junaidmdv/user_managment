@@ -11,15 +11,13 @@ type RouteConfig struct {
 
 func (R *RouteConfig) Setup() {
 	R.PublicRoutes()
-	R.AuthRoutes()
 }
 
 func (R *RouteConfig) PublicRoutes() {
 	R.App.POST("/signup", R.UserController.Signup)
 	R.App.GET("/users", R.UserController.GetUsers)
+	R.App.DELETE("/users/:id",R.UserController.DeleteUser)
+	R.App.PATCH("/users/:id",R.UserController.UpdateUser)
 
 }
 
-func (R *RouteConfig) AuthRoutes() {
-
-}

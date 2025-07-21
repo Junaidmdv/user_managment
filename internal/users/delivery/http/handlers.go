@@ -1,8 +1,8 @@
 package http
 
 import (
-	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/junaidmdv/user_mangment/internal/users"
@@ -34,7 +34,6 @@ func (U *UserHandler) Signup(c *gin.Context) {
 		return
 	}
 	if err := U.UseCase.Signup(&user); err != nil {
-		fmt.Println(err)
 		c.JSON(getstatusCode(err), ErrorResponse{Code: getstatusCode(err), Message: err.Error()})
 		return
 	}
@@ -61,8 +60,55 @@ func (U *UserHandler) GetUsers(c *gin.Context) {
 
 }
 
-func (U *UserHandler) DeleteUser() {
+func (U *UserHandler) DeleteUser(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(getstatusCode(entities.ErrBadParamInput),
+			ErrorResponse{Code: getstatusCode(entities.ErrBadParamInput),
+				Message: entities.ErrBadParamInput.Error(),
+			},
+		)
+		return
+	}
+	if err = U.UseCase.DeleteUser(id); err != nil {
+		c.JSON(getstatusCode(err), ErrorResponse{
+			Code:    getstatusCode(err),
+			Message: err.Error(),
+		},
+		)
+		return
+	}
 
+	c.JSON(http.StatusOK, gin.H{
+		"message": "user account deleted",
+	})
+
+}
+
+func (U *UserHandler) UpdateUser(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(getstatusCode(entities.ErrBadParamInput),
+			ErrorResponse{Code: getstatusCode(entities.ErrBadParamInput),
+				Message: entities.ErrBadParamInput.Error(),
+			},
+		)
+		return
+	}
+	var user dtos.UserResponse
+
+	if err = U.UseCase.UpdateUser(id, &user); err != nil {
+		c.JSON(getstatusCode(entities.ErrBadParamInput),
+			ErrorResponse{Code: getstatusCode(entities.ErrBadParamInput),
+				Message: err.Error(),
+			},
+		)
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "user account updated",
+	})
 }
 
 func getstatusCode(err error) int {
@@ -82,6 +128,8 @@ func getstatusCode(err error) int {
 		return http.StatusBadRequest
 	case entities.ErrDbFailure:
 		return http.StatusInternalServerError
+	case entities.ErrUserNotfound:
+		return http.StatusNotFound
 	}
 
 	return http.StatusUnprocessableEntity

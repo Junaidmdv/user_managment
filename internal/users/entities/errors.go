@@ -15,7 +15,10 @@ var (
 
 	ErrEmailExist=errors.New("user email already exist")
 
-	ErrInvalidRequestBody=errors.New("Invalid request body")
-	
+	ErrInvalidRequestBody=errors.New("invalid request body")
+
 	ErrDbFailure=errors.New("database failure")
+
+	ErrUserNotfound=errors.New("user not found in database")
+
 ) 

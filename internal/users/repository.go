@@ -6,6 +6,8 @@ import (
 
 type Respository interface {
 	AddUser(user *dtos.UserReq) error
-	IsEmailExist(string) error
-	GetUsers() ([]dtos.UserResponse, error)
+	IsEmailExist(string) bool
+	GetUsers() (*[]dtos.UserResponse, error)
+	DeleteUser(int)error
+	UpdateUser(int,*dtos.UserResponse)error
 }

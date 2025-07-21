@@ -10,7 +10,6 @@ type User struct {
 	UserName    string
 	Email       string
 	Password    string
-	PhoneNumber string
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 	DeletedAt   gorm.DeletedAt `gorm:"index"`

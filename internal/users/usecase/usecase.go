@@ -4,6 +4,7 @@ import (
 	validation "github.com/go-ozzo/ozzo-validation"
 	"github.com/junaidmdv/user_mangment/internal/users"
 	"github.com/junaidmdv/user_mangment/internal/users/dtos"
+	"github.com/junaidmdv/user_mangment/internal/users/entities"
 )
 
 type UserUsecase struct {
@@ -23,8 +24,8 @@ func (uc *UserUsecase) Signup(user *dtos.UserReq) error {
 		return err
 	}
 
-	if err := uc.Repository.IsEmailExist(user.Email); err != nil {
-		return err
+	if  exist:= uc.Repository.IsEmailExist(user.Email); exist {
+		return entities.ErrEmailExist
 	}
 
 	if err := uc.Repository.AddUser(user); err != nil {
@@ -34,11 +35,31 @@ func (uc *UserUsecase) Signup(user *dtos.UserReq) error {
 	return nil
 }
 
-func (uc *UserUsecase) GetUsers() ([]dtos.UserResponse, error) {
+func (uc *UserUsecase) GetUsers() (*[]dtos.UserResponse, error) {
 	users, err := uc.Repository.GetUsers()
 	if err != nil {
-		return []dtos.UserResponse{}, nil
+		return &[]dtos.UserResponse{}, err
 	}
 
 	return users, nil
+}
+
+func(uc *UserUsecase)DeleteUser(id int)error{
+   if err:=uc.Repository.DeleteUser(id);err != nil{
+	 return err
+   }
+
+   return nil
+
+}
+
+
+func (uc *UserUsecase)UpdateUser(id int,user *dtos.UserResponse)error{
+     if err:=user.Validate();err != nil{
+        return err
+	 }
+	 if err:=uc.Repository.UpdateUser(id,user);err != nil{
+        return err
+	 }
+	  return nil
 }

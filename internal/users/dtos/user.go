@@ -13,7 +13,15 @@ type UserReq struct {
 
 type UserResponse struct {
 	UserName string `json:"username"`
-	Email    string  `json:"email"`
+	Email    string `json:"email"`
+}
+
+func (Ur *UserResponse) Validate() error {
+	return validation.ValidateStruct(
+		Ur,
+		validation.Field(&Ur.UserName, validation.Length(5, 20).Error("Name must be 5 to 20 charectars")),
+		validation.Field(&Ur.Email, is.Email.Error("Invalid email format")),
+	)
 }
 
 func (Ur *UserReq) Validate() error {

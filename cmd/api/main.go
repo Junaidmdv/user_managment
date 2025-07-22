@@ -6,15 +6,14 @@ import (
 
 func main() {
 	viper := config.LoadConfig()
-	db:=config.DbConnection(viper)
+	db := config.DbConnection(viper)
 	config.Migrate(db)
-	app:=config.NewServer()
-    
-    
+	app := config.NewServer()
+
 	config.Bootstrap(&config.BootstrapConfig{
 		Viper: viper,
-		DB: db,
-		App: app,
+		DB:    db,
+		App:   app,
 	})
-    app.Run()
+	app.Run()
 }

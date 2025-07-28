@@ -38,5 +38,10 @@ jobs:
        key: ${{ secrets.SSH_PRIVATE_KEY }}
        port: 22
        script: |
-        
+        cd ~/go/src/user_managment
+        git pull origin master
+        go mod tidy 
+        cd cmd/api
+        go build 
+        sudo service user restart 
        

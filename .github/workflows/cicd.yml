@@ -42,6 +42,6 @@ jobs:
         git pull origin master
         go mod tidy 
         cd cmd/api
-        go build 
+        go build -o myapp main.go
         sudo service user restart 
        

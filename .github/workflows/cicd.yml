@@ -28,3 +28,14 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+    
+    - name: Deploy to vm via ssh 
+      uses: appleboy/ssh-action@v1
+      with:
+       host: ${{ secrets.HOST }}
+       username: ${{ secrets.USERNAME }}
+       key: ${{ secrets.PASSWORD_SSH}}
+       port: 22
+       script: |
+        whoami
+       

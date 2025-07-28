@@ -17,6 +17,13 @@ import (
 	"github.com/stretchr/testify/mock"
 )
 
+
+func init() {
+    gin.SetMode(gin.TestMode)
+    gin.DefaultWriter = io.Discard 
+}
+
+
 func TestSignup(t *testing.T) {
 	var user dtos.UserReq
 	err := faker.FakeData(&user)

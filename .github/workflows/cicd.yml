@@ -40,8 +40,8 @@ jobs:
        script: |
         cd ~/go/src/user_managment
         git pull origin master
-        go mod tidy 
-        cd cmd/api
+        go mod tidy
+        cd cmd/api || exit 1
         go build -o myapp main.go
-        sudo service user restart 
+        sudo systemctl restart user
        

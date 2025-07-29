@@ -44,8 +44,5 @@ jobs:
         go mod tidy
         cd cmd/api || exit 1
         go build -o myapp main.go
-        sudo systemctl daemon-reexec
         sudo systemctl daemon-reload
         sudo systemctl restart user.service
-        sudo systemctl status user.service --no-pager
-       

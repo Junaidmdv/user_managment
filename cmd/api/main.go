@@ -26,5 +26,5 @@ func main() {
 		DB:    db,
 		App:   app,
 	})
-	app.Run(":8080")
+	app.Run(":8000")
 }

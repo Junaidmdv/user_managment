@@ -7,7 +7,7 @@ on:
 
 jobs:
   learn_cicd:
-    runs-on:ubuntu_latest
+    runs-on: ubuntu_latest
   environment: dev
 
   steps:

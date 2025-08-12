@@ -1,0 +1,19 @@
+name: study cicd 
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  learn_cicd:
+    runs-on:ubuntu_latest
+  environment: dev
+
+  steps:
+  - name: checkout source code
+    uses: actions/checkout@v4
+
+  - name: echo message 
+  - run : echo "This is sample file"
+   

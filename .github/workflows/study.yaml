@@ -7,12 +7,12 @@ on:
 
 jobs:
   learn_cicd:
-    runs-on: ubuntu_latest
+    runs-on: ubuntu-latest
     environment: dev
 
-  steps:
-    - name: checkout code base 
-      uses: actions/checkout@v4
+    steps:
+      - name: checkout code base 
+        uses: actions/checkout@v4
     
-    - name: echo command 
-      run : echo "My sample pipeline command"
+      - name: echo command 
+        run : echo "My sample pipeline command"

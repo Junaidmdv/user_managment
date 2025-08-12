@@ -11,9 +11,8 @@ jobs:
     environment: dev
 
   steps:
-  - name: checkout source code
-    uses: actions/checkout@v4
-
-  - name: echo message 
-  - run : echo "This is sample file"
-   
+    - name: checkout code base 
+      uses: actions/checkout@v4
+    
+    - name: echo command 
+      run : echo "My sample pipeline command"

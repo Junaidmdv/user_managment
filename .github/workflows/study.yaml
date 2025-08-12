@@ -8,7 +8,7 @@ on:
 jobs:
   learn_cicd:
     runs-on: ubuntu_latest
-  environment: dev
+    environment: dev
 
   steps:
   - name: checkout source code

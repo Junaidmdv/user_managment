@@ -19,5 +19,8 @@ jobs:
         run:  touch hello.txt 
 
       - name: delete file 
-        run: rm hello.txt
+        run:  rm hello.txt 
+      
+      - name: delete the file 
+        run: echo "the file is deleted"
       

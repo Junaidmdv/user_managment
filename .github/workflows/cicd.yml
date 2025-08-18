@@ -30,10 +30,11 @@ jobs:
 
     - name: Test
       run: go test -v ./...
-      
-    - run: mkdir -p path/to/artifact
-    - run: echo hello > path/to/artifact/world.txt
 
+    - run: mkdir -p dist
+    - run: echo hello > dist/artifact.txt
+
+    
     - name: upload artifact 
       uses: actions/upload-artifact@v4
       with:

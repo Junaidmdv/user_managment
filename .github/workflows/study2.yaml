@@ -1,0 +1,23 @@
+name: golang cicd 
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: checkout code 
+        uses: actions/checkout@v4
+
+      - name: echo command 
+        run: echo "this is my secod yaml file"
+      
+      - name: create a file 
+        run:  touch hello.txt 
+
+      - name: delete file 
+        run: rm hello.txt
+      

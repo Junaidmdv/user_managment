@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/junaidmdv/user_mangment/internal/config"
@@ -8,6 +9,7 @@ import (
 )
 
 func main() {
+	fmt.Println("starting the application")
 	v := viper.New()
 	v.SetConfigName("config")
 	v.SetConfigType("env")

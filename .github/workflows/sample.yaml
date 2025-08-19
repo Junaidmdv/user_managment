@@ -1,0 +1,20 @@
+name: sample_golang
+on:
+  push:
+    branches: ["main","master"]
+
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+     - name: checkout code 
+       uses: actions/checkout@v4
+
+
+      
+     - name: Install dependies
+       run: go mod tidy 
+
+     - name: test the code 
+       run : go test ./...
+      

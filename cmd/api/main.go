@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Println("starting the application")
+	fmt.Println("starting the application)
 	v := viper.New()
 	v.SetConfigName("config")
 	v.SetConfigType("env")

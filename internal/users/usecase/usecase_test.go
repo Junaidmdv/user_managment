@@ -30,7 +30,7 @@ func TestSignup(t *testing.T) {
 	t.Run("error_email_exist", func(t *testing.T) {
 		user := &dtos.UserReq{
 			UserName: "junaid",
-			Email:    "junaid@gmail.com",
+			Email:    "junaidgmail.com",
 			Password: "12345678",
 		}
 		mockrepo.On("IsEmailExist", user.Email).Return(true).Once()
